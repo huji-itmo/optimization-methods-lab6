@@ -76,10 +76,14 @@ class Specimen:
 
     def mutate(self, swap_indexes: tuple[int, int]):
         assert swap_indexes[0] != swap_indexes[1]
+
+        output = "mutation occurred! before: " + str(self.chromosome)
         self.chromosome[swap_indexes[0]], self.chromosome[swap_indexes[1]] = (
             self.chromosome[swap_indexes[1]],
             self.chromosome[swap_indexes[0]],
         )
+        output += ", after: " + str(self.chromosome)
+        print(output)
 
     def generate_mutation(self) -> None:
         possible_indexes = list(range(len(self.chromosome)))

@@ -21,7 +21,7 @@ lecture_matrix = [
 
 POPULATION_COUNT = 4
 
-NUMBER_OF_GENERATIONS = 100
+NUMBER_OF_GENERATIONS = 10
 
 MUTATION_PROBABILITY = 0.01
 
@@ -35,7 +35,15 @@ if __name__ == "__main__":
 
     population = random.sample(possible_combinations, POPULATION_COUNT)
     population: list[Specimen] = [Specimen(x, MUTATION_PROBABILITY) for x in population]
-    for _ in range(NUMBER_OF_GENERATIONS):
+    for i in range(NUMBER_OF_GENERATIONS):
+        print("----------------------------------------------------")
+        print("Population ", i, ": ")
+
+        for specimen in population:
+            print(
+                specimen.chromosome, specimen.get_target_function_value(WORKING_MATRIX)
+            )
+
         for _ in range(0, POPULATION_COUNT, 2):
             chosen_pair = random.sample(population, 2)
 
