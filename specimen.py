@@ -14,7 +14,7 @@ class Specimen:
             self.mutation_chance = mutation_chance
 
     def breed_with(self, other: "Specimen") -> tuple["Specimen", "Specimen"]:
-        possible_indexes = list(1, range(len(self.chromosome)))
+        possible_indexes = list(range(1, len(self.chromosome)))
         first_index = random.choice(possible_indexes)
         possible_indexes.remove(first_index)
         second_index = random.choice(possible_indexes)
