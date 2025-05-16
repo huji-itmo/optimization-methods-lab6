@@ -9,12 +9,12 @@ class Specimen:
     def __init__(self, sequence: list[int], mutation_chance: float = 0.01):
         assert len(set(sequence)) == len(sequence)
 
-        self.chromosome = sequence
+        self.chromosome = list(sequence)
         if mutation_chance is not None:
             self.mutation_chance = mutation_chance
 
     def breed_with(self, other: "Specimen") -> tuple["Specimen", "Specimen"]:
-        possible_indexes = list(range(len(self.chromosome) + 1))
+        possible_indexes = list(1, range(len(self.chromosome)))
         first_index = random.choice(possible_indexes)
         possible_indexes.remove(first_index)
         second_index = random.choice(possible_indexes)
@@ -28,6 +28,27 @@ class Specimen:
         for child in [child1, child2]:
             if random.uniform(0, 1) <= self.mutation_chance:
                 child.generate_mutation()
+
+        debug_list = list()
+        for specimen in [self, other, child1, child2]:
+            debug_chromosome = [str(x) for x in specimen.chromosome.copy()]
+            debug_chromosome.insert(min(first_index, second_index), "|")
+            debug_chromosome.insert(max(first_index, second_index) + 1, "|")
+
+            debug_list.append(debug_chromosome)
+        print(
+            "".join(debug_list[0]),
+            " -> ",
+            "".join(debug_list[2]),
+        )
+        print(" + ")
+
+        print(
+            "".join(debug_list[1]),
+            " -> ",
+            "".join(debug_list[3]),
+        )
+        print("--")
 
         return (child1, child2)
 
