@@ -6,6 +6,8 @@ class Specimen:
     chromosome: list[int]
     mutation_chance: float = 0.01
 
+    debug = False
+
     def __init__(self, sequence: list[int], mutation_chance: float = 0.01):
         assert len(set(sequence)) == len(sequence)
 
@@ -29,25 +31,26 @@ class Specimen:
             if random.uniform(0, 1) <= self.mutation_chance:
                 child.generate_mutation()
 
-        debug_list = list()
-        for specimen in [self, other, child1, child2]:
-            debug_chromosome = [str(x) for x in specimen.chromosome.copy()]
-            debug_chromosome.insert(min(first_index, second_index), "|")
-            debug_chromosome.insert(max(first_index, second_index) + 1, "|")
+        if self.debug == True:
+            debug_list = list()
+            for specimen in [self, other, child1, child2]:
+                debug_chromosome = [str(x) for x in specimen.chromosome.copy()]
+                debug_chromosome.insert(min(first_index, second_index), "|")
+                debug_chromosome.insert(max(first_index, second_index) + 1, "|")
 
             debug_list.append(debug_chromosome)
-        print(
-            " ",
-            "".join(debug_list[0]),
-        )
-        print(
-            "+",
-            "".join(debug_list[1]),
-        )
+            print(
+                " ",
+                "".join(debug_list[0]),
+            )
+            print(
+                "+",
+                "".join(debug_list[1]),
+            )
 
-        print("  --------")
-        print("  " + "".join(debug_list[2]))
-        print("  " + "".join(debug_list[3]))
+            print("  --------")
+            print("  " + "".join(debug_list[2]))
+            print("  " + "".join(debug_list[3]))
 
         return (child1, child2)
 

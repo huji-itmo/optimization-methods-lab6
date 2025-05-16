@@ -46,10 +46,10 @@ if __name__ == "__main__":
                 specimen.get_target_function_value(WORKING_MATRIX),
             )
 
-        print("Breeding:")
+        # print("Breeding:")
 
         for pair_index in range(0, POPULATION_COUNT, 2):
-            print(" Pair: ", pair_index // 2)
+            # print(" Pair: ", pair_index // 2)
             shuffled_population = population.copy()
             random.shuffle(shuffled_population)
             chosen_pair = shuffled_population[pair_index : pair_index + 2]
