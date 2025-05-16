@@ -37,18 +37,17 @@ class Specimen:
 
             debug_list.append(debug_chromosome)
         print(
+            " ",
             "".join(debug_list[0]),
-            " -> ",
-            "".join(debug_list[2]),
         )
-        print(" + ")
-
         print(
+            "+",
             "".join(debug_list[1]),
-            " -> ",
-            "".join(debug_list[3]),
         )
-        print("--")
+
+        print("  --------")
+        print("  " + "".join(debug_list[2]))
+        print("  " + "".join(debug_list[3]))
 
         return (child1, child2)
 

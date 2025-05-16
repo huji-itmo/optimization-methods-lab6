@@ -39,14 +39,17 @@ if __name__ == "__main__":
         print("----------------------------------------------------")
         print("Population ", i, ": ")
 
-        print("Parents")
+        print("Parents:")
         for specimen in population:
             print(
                 "".join([str(x) for x in specimen.chromosome]),
                 specimen.get_target_function_value(WORKING_MATRIX),
             )
 
+        print("Breeding:")
+
         for pair_index in range(0, POPULATION_COUNT, 2):
+            print(" Pair: ", pair_index // 2)
             shuffled_population = population.copy()
             random.shuffle(shuffled_population)
             chosen_pair = shuffled_population[pair_index : pair_index + 2]
@@ -58,7 +61,7 @@ if __name__ == "__main__":
 
         population.sort(key=lambda x: x.get_target_function_value(WORKING_MATRIX))
 
-        print("Full")
+        print("New full population:")
         for specimen in population:
             print(
                 "".join([str(x) for x in specimen.chromosome]),
@@ -66,6 +69,7 @@ if __name__ == "__main__":
             )
 
         population = population[0:(POPULATION_COUNT)]
+        print("Deleted last", POPULATION_COUNT)
 
     print("best result after", NUMBER_OF_GENERATIONS, "generations:")
     print(
